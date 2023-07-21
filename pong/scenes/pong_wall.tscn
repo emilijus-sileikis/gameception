@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ciuhk0vifohnv"]
+
+[node name="pong_wall" type="StaticBody2D"]
