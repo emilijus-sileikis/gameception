@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://d7aisxonsv01"]
+[gd_scene load_steps=4 format=3 uid="uid://d7aisxonsv01"]
 
-[node name="pong_paddle" type="Node2D"]
+[ext_resource type="Script" path="res://pong/scripts/pong_paddle.gd" id="1_ae7lg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kpqeg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfval"]
+size = Vector2(16, 120)
+
+[node name="pong_paddle" type="RigidBody2D"]
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_ae7lg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(16, 120)
+texture = SubResource("CanvasTexture_kpqeg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dfval")

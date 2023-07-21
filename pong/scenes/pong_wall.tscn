@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://ciuhk0vifohnv"]
+[gd_scene load_steps=4 format=3 uid="uid://ciuhk0vifohnv"]
+
+[sub_resource type="Gradient" id="Gradient_yoqli"]
+offsets = PackedFloat32Array(0, 0.0129032)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_07okk"]
+gradient = SubResource("Gradient_yoqli")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nmsu"]
+size = Vector2(14, 648)
 
 [node name="pong_wall" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, 324)
+scale = Vector2(0.219, 10.125)
+texture = SubResource("GradientTexture2D_07okk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 324)
+shape = SubResource("RectangleShape2D_6nmsu")

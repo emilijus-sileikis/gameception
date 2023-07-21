@@ -1,3 +1,34 @@
-[gd_scene format=3 uid="uid://cirp0niebl3ft"]
+[gd_scene load_steps=2 format=3 uid="uid://cirp0niebl3ft"]
 
-[node name="pong_ui" type="Node2D"]
+[ext_resource type="Script" path="res://pong/scripts/pong_ui.gd" id="1_b3pxu"]
+
+[node name="pong_ui" type="CanvasLayer"]
+script = ExtResource("1_b3pxu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="player_points" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="enemy_points" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="message" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64

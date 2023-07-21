@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://bnnwvwxsl2b7f"]
+[gd_scene load_steps=3 format=3 uid="uid://bnnwvwxsl2b7f"]
 
-[node name="pong_edge" type="Node2D"]
+[ext_resource type="Script" path="res://pong/scripts/pong_edge.gd" id="1_p7juk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e06ju"]
+
+[node name="pong_edge" type="Area2D"]
+script = ExtResource("1_p7juk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 310)
+scale = Vector2(1.4, 35)
+shape = SubResource("RectangleShape2D_e06ju")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

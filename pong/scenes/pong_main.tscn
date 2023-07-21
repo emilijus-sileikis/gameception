@@ -1,3 +1,54 @@
-[gd_scene format=3 uid="uid://dxabr7ek4t552"]
+[gd_scene load_steps=8 format=3 uid="uid://dxabr7ek4t552"]
+
+[ext_resource type="Script" path="res://pong/scripts/pong_main.gd" id="1_h08la"]
+[ext_resource type="PackedScene" uid="uid://ciuhk0vifohnv" path="res://pong/scenes/pong_wall.tscn" id="1_pg5o3"]
+[ext_resource type="PackedScene" uid="uid://d7aisxonsv01" path="res://pong/scenes/pong_paddle.tscn" id="2_m2jwy"]
+[ext_resource type="Script" path="res://pong/scripts/enemy_paddle.gd" id="3_jll11"]
+[ext_resource type="PackedScene" uid="uid://ckc723a284qgw" path="res://pong/scenes/pong_ball.tscn" id="4_0fbi6"]
+[ext_resource type="PackedScene" uid="uid://bnnwvwxsl2b7f" path="res://pong/scenes/pong_edge.tscn" id="5_whpbt"]
+[ext_resource type="PackedScene" uid="uid://cirp0niebl3ft" path="res://pong/scenes/pong_ui.tscn" id="6_7r8om"]
 
 [node name="pong_main" type="Node2D"]
+script = ExtResource("1_h08la")
+
+[node name="walls" type="Node" parent="."]
+
+[node name="pong_top_wall" parent="walls" instance=ExtResource("1_pg5o3")]
+rotation = 4.71239
+scale = Vector2(1, 1.778)
+
+[node name="pong_bottom_wall" parent="walls" instance=ExtResource("1_pg5o3")]
+position = Vector2(0, 648)
+rotation = 4.71239
+scale = Vector2(1, 1.778)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 317)
+zoom = Vector2(0.8, 0.8)
+
+[node name="pong_paddle" parent="." instance=ExtResource("2_m2jwy")]
+position = Vector2(100, 317)
+
+[node name="enemy_paddle" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("2_m2jwy")]
+position = Vector2(1066, 317)
+script = ExtResource("3_jll11")
+paddle_speed = 35000
+ball = NodePath("../pong_ball")
+
+[node name="pong_ball" parent="." instance=ExtResource("4_0fbi6")]
+position = Vector2(576, 318)
+
+[node name="left_edge" parent="." instance=ExtResource("5_whpbt")]
+position = Vector2(67, 2)
+
+[node name="right_edge" parent="." instance=ExtResource("5_whpbt")]
+position = Vector2(1090, 2)
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(576, 0)
+points = PackedVector2Array(0, 0, 0, 635)
+
+[node name="pong_ui" parent="." instance=ExtResource("6_7r8om")]
+
+[connection signal="point_scored" from="left_edge" to="." method="_on_enemy_scored"]
+[connection signal="point_scored" from="right_edge" to="." method="_on_player_scored"]
